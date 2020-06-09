@@ -4,8 +4,9 @@ python:
     - 3.8
 
 env:
-    - PIPENV_VENV_IN_PROJECT=1
-    - PIPENV_IGNORE_VIRTUALENVS=1
+    global:
+        - PIPENV_VENV_IN_PROJECT=1
+        - PIPENV_IGNORE_VIRTUALENVS=1
 
 install:
     - pip install pipenv
@@ -13,4 +14,7 @@ install:
 
 script:
     - pipenv run flake8 .
-    - pipenv run pytest
+    - pipenv run pytest --cov=plataforma
+
+after_success:
+    - pipenv run codecov
