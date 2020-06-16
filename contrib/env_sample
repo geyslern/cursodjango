@@ -1,3 +1,4 @@
 DEBUG = False
 SECRET_KEY = 'Your SECRET_KEY here'
 ALLOWED_HOSTS = 'Your app domain name here'
+DATABASE_URL = postgres://postgres:postgres@localhost/testdb
