@@ -1,1 +1,2 @@
 DEBUG = False
+SECRET_KEY = 'Your SECRET_KEY here'
