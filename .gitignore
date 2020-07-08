@@ -128,5 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# VS Code files
-.vscode
+# Static files
+static_files/
+media_files/
