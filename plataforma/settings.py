@@ -76,6 +76,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'plataforma.wsgi.application'
 
+# django-debug-toolbar configuration
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+    INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
+
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
