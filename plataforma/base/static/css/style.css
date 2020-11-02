@@ -1,1 +1,13 @@
-# Empty CSS file for your own CSS
+.contact {
+    color: #FFD43B;
+    background-color: #356F9E;
+}
+
+.rights {
+    color: #356F9E;
+    background-color: #FFD43B;
+}
+
+.email:hover {
+    color: #FFD43B;
+}
