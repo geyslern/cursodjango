@@ -17,52 +17,73 @@
     </head>
     <body>
 
-    <div class="container-fluid container-xl">
-    <div class="row">
-        <div class="col-md-12">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="navbar-toggler-icon"></span>
-                </button> <a class="navbar-brand" href="{% url 'base:home' %}">Python Pro</a>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="navbar-nav">
-                    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="navbar-toggler-icon"></span>
+                    </button> <a class="navbar-brand" href="{% url 'base:home' %}">Python Pro</a>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="navbar-nav">
+                        </ul>
+                    </div>
+                </nav>
+                <div class="jumbotron">
+                    <h2>
+                        Curso de Python com Luciano Ramalho
+                    </h2>
+                    <p>
+                        Confira em breve mais informações sobre o curso que será ministrado pelo autor do livro
+                        <a href="https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/" target="_blank">Python Fluente</a>
+                    </p>
                 </div>
-            </nav>
-            <div class="jumbotron">
-                <h2>
-                    Curso de Python com Luciano Ramalho
-                </h2>
-                <p>
-                    Confira em breve mais informações sobre o curso que será ministrado pelo autor do livro
-                    <a href="https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/" target="_blank">Python Fluente</a>
-                </p>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <h5 class="card-header">
-                            Mais detalhes sobre o instrutor
-                        </h5>
-                        <div class="card-body">
-                            <p class="card-text">
-                                <img alt="Foto de Luciano Ramalho" class="rounded-circle img-thumbnail float-left mr-3" src="{% static 'img/luciano_ramalho.png' %}" />
-                                Ramalho é sócio e professor na <a href="http://www.python.pro.br/" target="_blank">Python Pro</a>
-                                e autor do livro Python Fluente. Foi diretor técnico do Brasil Online, primeiro portal
-                                da Abril S/A na Web. Liderou times para os portais IDG Now, BOL, UOL, AOL Brasil e outros,
-                                usando Python desde 1998. Como instrutor, atendeu clientes como Citibank, CPqD, Serpro, Presidência da República,
-                                Globo.com e Itaú. Palestrante em eventos internacionais como FISL, PyCon US e OSCON.
-                                Ajudou a criar a Associação Python Brasil e foi seu presidente. É membro da Python
-                                Software Foundation e fundador do Garoa Hacker Clube, o primeiro hackerspace do Brasil.
-                            </p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <h5 class="card-header">
+                                Mais detalhes sobre o instrutor
+                            </h5>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <img alt="Foto de Luciano Ramalho" class="rounded-circle img-thumbnail float-left mr-3" src="{% static 'img/luciano_ramalho.png' %}" />
+                                    Ramalho é sócio e professor na <a href="http://www.python.pro.br/" target="_blank">Python Pro</a>
+                                    e autor do livro Python Fluente. Foi diretor técnico do Brasil Online, primeiro portal
+                                    da Abril S/A na Web. Liderou times para os portais IDG Now, BOL, UOL, AOL Brasil e outros,
+                                    usando Python desde 1998. Como instrutor, atendeu clientes como Citibank, CPqD, Serpro, Presidência da República,
+                                    Globo.com e Itaú. Palestrante em eventos internacionais como FISL, PyCon US e OSCON.
+                                    Ajudou a criar a Associação Python Brasil e foi seu presidente. É membro da Python
+                                    Software Foundation e fundador do Garoa Hacker Clube, o primeiro hackerspace do Brasil.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <footer class="main-footer">
+        <div class="container contact mt-5 pt-4 pb-4">
+            <div class="row">
+                <div class="col">
+                    <h3>Entre em contato:</h3>
+                    <address>
+                        +55 (00) 1234-5678 <br />
+                        <a href="mailto:nemadianta@escrever.com.br" class="contact email">nemadianta@escrever.com.br</a>
+                    </address>
+                </div>
+            </div>
+        </div>
+        <div class="container rights pb-4">
+            <div class="row">
+                <div class="col">
+                    {% now 'Y' %} Python Pro®. Todos os direitos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
