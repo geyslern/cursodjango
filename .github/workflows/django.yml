@@ -35,8 +35,8 @@ jobs:
         pipenv run flake8 . --count --exit-zero --max-complexity=10 --statistics
     - name: Test with pytest
       run: |
-        pipenv run pytest
-    # - name: Upload coverage reports to Codecov with GitHub Action
-    #   uses: codecov/codecov-action@v3
-    #   with:
-    #     token: ${{ secrets.CODECOV_TOKEN}}
+        pipenv run pytest --cov pypro
+    - name: Upload coverage reports to Codecov with GitHub Action
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN}}
