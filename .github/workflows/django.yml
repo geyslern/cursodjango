@@ -39,6 +39,12 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+        cache: 'pipenv'
+        cache-dependency-path: |
+          /home/runner/work/cursodjango/cursodjango/Pipfile.lock
+
+    - name: Cache folder path
+      run: mkdir -p /home/runner/.local/share/virtualenvs
 
     - name: Install Dependencies
       run: |
