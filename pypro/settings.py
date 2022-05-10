@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "collectfast",
     "django.contrib.staticfiles",
     "pypro.base",
 ]
@@ -124,6 +125,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
+# Disable Collectfast in development environment
+COLLECTFAST_ENABLED = False
+
 # S3 Configuration
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default=None)
 if AWS_ACCESS_KEY_ID:
@@ -147,6 +151,11 @@ if AWS_ACCESS_KEY_ID:
     STATIC_ROOT = f'/{STATIC_S3_PATH}/'
     STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_ENDPOINT}/{STATIC_S3_PATH}/'
     ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
+    # Enable Collectfast
+    COLLECTFAST_ENABLED = True
+    # Config Collectfast
+    COLLECTFAST_STRATEGY = 'collectfast.strategies.boto3.Boto3Strategy'
 
     # Upload media folder
     DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
