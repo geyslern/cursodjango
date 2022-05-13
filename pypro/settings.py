@@ -84,6 +84,8 @@ parse_database = partial(dj_database_url.parse, conn_max_age=600)
 
 DATABASES = {"default": config("DATABASE_URL", default=sqlite_url, cast=parse_database)}
 
+AUTH_USER_MODEL = 'base.User'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
