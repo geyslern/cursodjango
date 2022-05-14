@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return HttpResponse("<html><body>It works!</body></html>")
+    return HttpResponse("<html><body>It works!</body></html>", charset='utf-8')
