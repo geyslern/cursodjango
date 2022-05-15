@@ -1,6 +1,6 @@
-from django.http import HttpResponse
-# from django.shortcuts import render
+# from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def home(request):
-    return HttpResponse("<html><body>It works!</body></html>", charset='utf-8')
+    return render(request, 'base/home.html')
