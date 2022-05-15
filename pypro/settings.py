@@ -78,10 +78,10 @@ TEMPLATES = [
 WSGI_APPLICATION = "pypro.wsgi.application"
 
 # Django Debug Toolbar
-INTERNAL_IPS=config('INTERNAL_IPS', default='127.0.0.1', cast=Csv())
+INTERNAL_IPS = config("INTERNAL_IPS", default="127.0.0.1", cast=Csv())
 if DEBUG:
-    INSTALLED_APPS.append('debug_toolbar')
-    MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+    INSTALLED_APPS.append("debug_toolbar")
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
 
 # Database
@@ -92,7 +92,7 @@ parse_database = partial(dj_database_url.parse, conn_max_age=600)
 
 DATABASES = {"default": config("DATABASE_URL", default=sqlite_url, cast=parse_database)}
 
-AUTH_USER_MODEL = 'base.User'
+AUTH_USER_MODEL = "base.User"
 
 
 # Password validation
@@ -139,42 +139,46 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 COLLECTFAST_ENABLED = False
 
 # S3 Configuration
-AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default=None)
+AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID", default=None)
 if AWS_ACCESS_KEY_ID:
-    AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+    AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME")
 
-    AWS_S3_STORAGE_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    AWS_S3_STORAGE_PARAMETERS = {"CacheControl": "max-age=86400"}
     AWS_PRELOAD_METADATA = True
     AWS_AUTO_CREATE_BUCKET = False
     AWS_QUERYSTRING_AUTH = True
     AWS_S3_CUSTOM_DOMAIN = None
-    AWS_DEFAULT_ACL = 'public-read'
+    AWS_DEFAULT_ACL = "public-read"
 
-    AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME', default='us-west-004')
-    AWS_S3_ENDPOINT = f's3.{AWS_S3_REGION_NAME}.backblazeb2.com'
-    AWS_S3_ENDPOINT_URL = f'https://{AWS_S3_ENDPOINT}'
+    AWS_S3_REGION_NAME = config("AWS_S3_REGION_NAME", default="us-west-004")
+    AWS_S3_ENDPOINT = f"s3.{AWS_S3_REGION_NAME}.backblazeb2.com"
+    AWS_S3_ENDPOINT_URL = f"https://{AWS_S3_ENDPOINT}"
 
     # Static assets
-    STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
-    STATIC_S3_PATH = 'static'
-    STATIC_ROOT = f'/{STATIC_S3_PATH}/'
-    STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_ENDPOINT}/{STATIC_S3_PATH}/'
-    ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+    STATICFILES_STORAGE = "s3_folder_storage.s3.StaticStorage"
+    STATIC_S3_PATH = "static"
+    STATIC_ROOT = f"/{STATIC_S3_PATH}/"
+    STATIC_URL = (
+        f"https://{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_ENDPOINT}/{STATIC_S3_PATH}/"
+    )
+    ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
 
     # Enable Collectfast
     COLLECTFAST_ENABLED = True
     # Config Collectfast
-    COLLECTFAST_STRATEGY = 'collectfast.strategies.boto3.Boto3Strategy'
+    COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 
     # Upload media folder
-    DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
-    DEFAULT_S3_PATH = 'media'
-    MEDIA_ROOT = f'/{DEFAULT_S3_PATH}/'
-    MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_ENDPOINT}/{DEFAULT_S3_PATH}/'
+    DEFAULT_FILE_STORAGE = "s3_folder_storage.s3.DefaultStorage"
+    DEFAULT_S3_PATH = "media"
+    MEDIA_ROOT = f"/{DEFAULT_S3_PATH}/"
+    MEDIA_URL = (
+        f"https://{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_ENDPOINT}/{DEFAULT_S3_PATH}/"
+    )
 
-    INSTALLED_APPS.append('s3_folder_storage')
-    INSTALLED_APPS.append('storages')
+    INSTALLED_APPS.append("s3_folder_storage")
+    INSTALLED_APPS.append("storages")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -182,18 +186,16 @@ if AWS_ACCESS_KEY_ID:
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Sentry SDK
-SENTRY_DSN = config('SENTRY_DSN', default=None)
+SENTRY_DSN = config("SENTRY_DSN", default=None)
 if SENTRY_DSN:
     sentry_sdk.init(
-    dsn=SENTRY_DSN,
-    integrations=[DjangoIntegration()],
-
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production.
-    traces_sample_rate=1.0,
-
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
-)
+        dsn=SENTRY_DSN,
+        integrations=[DjangoIntegration()],
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        # We recommend adjusting this value in production.
+        traces_sample_rate=1.0,
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True,
+    )
