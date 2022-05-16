@@ -6,7 +6,7 @@ from pypro.django_assertions import assert_contains
 
 @fixture
 def response(client: Client):
-    resp = client.get(reverse('home'))
+    resp = client.get(reverse('base:home'))
     return resp
 
 
@@ -19,4 +19,4 @@ def test_title(response):
 
 
 def test_home_link(response):
-    assert_contains(response, f'href="{reverse("home")}">Python Pro</a>')
+    assert_contains(response, f'href="{reverse("base:home")}">Python Pro</a>')
