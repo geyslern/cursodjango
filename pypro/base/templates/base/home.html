@@ -4,18 +4,20 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <title>Python Pro</title>
         <meta name="description" content="Source code generated using layoutit.com" />
         <meta name="author" content="LayoutIt!" />
         <meta name="keywords" content="curso, python" />
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
         <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+        <link href="{% static 'img/favicon.png' %}" rel="icon" type="image/png" />
     </head>
     <body>
-        <div class="container-fluid">
+        <div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
                         <button class="navbar-toggler"
                                 type="button"
@@ -29,30 +31,63 @@
                             </ul>
                         </div>
                     </nav>
-                    <div class="jumbotron">
-                        <h2>Hello, world!</h2>
-                        <p>
-                            This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-                        </p>
-                        <p>
-                            <a class="btn btn-primary btn-large" href="#">Learn more</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <h5 class="card-header">Card title</h5>
-                        <div class="card-body">
-                            <p class="card-text">
-                                Card content
+                    <div class="container">
+                        <div class="jumbotron">
+                            <h2>Curso de Python com Luciano Ramalho</h2>
+                            <p>
+                                Confira em breve mais informações sobre o curso que será ministrado pelo autor do livro
+                                <a href="https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/"
+                                    target="_blank"
+                                    rel="nofollow">Python Fluente</a>
                             </p>
                         </div>
-                        <div class="card-footer">Card footer</div>
                     </div>
                 </div>
             </div>
+            <div class="container">
+                <div class="row">
+                    <div class="card">
+                        <h5 class="card-header">Mais detalhes sobre o autor</h5>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <img class="img-thumbnail float-left m-3"
+                                     src="{% static 'img/luciano_ramalho.png' %}"
+                                     width="160px"
+                                     height="160px"
+                                     alt="Foto do Luciano"/>
+                                <p>
+                                    Ramalho é sócio e professor na <a href="https://www.python.pro.br">Python Pro</a>
+                                    e autor do Livro <a href="https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/" target="_blank">Python Fluente</a>.
+                                    Foi diretor técnico do Brasil Online, primeiro portal da Abril S/A na Web.
+                                    Liderou times para os portais IDG Now, BOL, UOL, AOL Brasil e outros, usando Python desde 1998.
+                                    Como instrutor, atendeu clientes como Citibank, CPqD, Serpro, Presidência da República, Globo.com e Itaú.
+                                    Palestrante em eventos internacionais como FISL, PyCon US e OSCON.
+                                    Ajudou a criar a Associação Python Brasil e foi seu presidente.
+                                    É membro da Python Software Foundation e fundador do Garoa Hacker Clube, o primeiro hackerspace do Brasil.
+                                </p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container">
+                    <div class="row text-light contato rounded-top mt-5 m pt-4 px-3">
+                        <div class="col">
+                            <address>
+                                <h3>Entre em contato</h3>
+                                <p><a class="text-light" href="{{ 'tel:+5512997411854' }}">+55 (12) 99741-1854</a></p>
+                                <p><a class="text-light" href="mailto:ramalho@python.pro.br">ramalho@python.pro.br</a></p>
+                            </address>
+                        </div>
+                    </div>
+                    <div class="row text-light direitos rounded-bottom p-3">
+                        <div class="col">
+                            <p>{% now 'Y' %} · Todos os direitos reservados </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
         <script src="{% static 'js/jquery.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
