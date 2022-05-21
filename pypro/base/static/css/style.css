@@ -5,3 +5,8 @@
 .direitos {
     background-color: #018ECA;
 }
+
+.signup-key {
+  position: absolute;
+  left: -5000px;
+}
