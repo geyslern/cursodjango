@@ -4,7 +4,8 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <meta name="description" content="Curso de Python com Django" />
         <meta name="author" content="GNS Desenvolvimento de Sistemas" />
         <meta name="keywords" content="curso, python" />
@@ -36,14 +37,25 @@
                 <div class="col">
                     <div class="container bg-light rounded mt-3 mb-3 p-3">
                         <h2>Curso de Python com Luciano Ramalho</h2>
-                        <h4 class="mt-4">Entre na fila de espera</h4>
-                        <form action="https://gmail.us13.list-manage.com/subscribe/post?u=d95191579223c0f9a110e1c63&amp;id=ceea81a2f7"
-                                  method="post"
-                                  id="mc-embedded-subscribe-form"
-                                  name="mc-embedded-subscribe-form"
-                                  class="form-row align-items-center"
-                                  target="_blank"
-                                  novalidate>
+                        <h4 class="mt-4">Matrículas abertas! Custo R$ 1000,00</h4>
+                        <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                        <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html"
+                              method="post"
+                              onsubmit="PagSeguroLightbox(this); return false;">
+                            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                            <input type="hidden" name="code" value="7A04378D0101CC1224B6DF84017C792B"/>
+                            <input type="hidden" name="iot" value="button"/>
+                            <input type="image"
+                                   src="https://stc.pagseguro.uol.com.br/public/img/botoes/pagamentos/120x53-comprar.gif"
+                                   name="submit"
+                                   alt="Pague com PagSeguro - é rápido, grátis e seguro!"/>
+                        </form>
+                        <script type="text/javascript"
+                                src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+                        <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+
+                        {% comment %} <h4 class="mt-4">Entre na fila de espera</h4>
+                        <form action="https://gmail.us13.list-manage.com/subscribe/post?u=d95191579223c0f9a110e1c63&amp;id=ceea81a2f7" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="form-row align-items-center" target="_blank" novalidate>
                             <div class="form-row align-items-center">
                                 <div class="col-auto my-1">
                                     <label class="sr-only" for="mce-EMAIL">email</label>
@@ -55,16 +67,13 @@
                                 </div>
                                 <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                                 <div class="signup-key" aria-hidden="true">
-                                    <input type="text"
-                                           name="b_d95191579223c0f9a110e1c63_ceea81a2f7"
-                                           tabindex="-1"
-                                           value="" />
+                                    <input type="text" name="b_d95191579223c0f9a110e1c63_ceea81a2f7" tabindex="-1" value="" />
                                 </div>
                                 <div class="col-auto my-1">
                                     <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary" />
                                 </div>
                             </div>
-                        </form>
+                        </form> {% endcomment %}
                     </div>
                 </div>
             </div>
@@ -101,14 +110,20 @@
                         <div class="col">
                             <address>
                                 <h3>Entre em contato</h3>
-                                <p><a class="text-light" href="{{ 'tel:+5512997411854' }}">+55 (12) 99741-1854</a></p>
-                                <p><a class="text-light" href="mailto:ramalho@python.pro.br">ramalho@python.pro.br</a></p>
+                                <p>
+                                    <a class="text-light" href="{{ 'tel:+5512997411854' }}">+55 (12) 99741-1854</a>
+                                </p>
+                                <p>
+                                    <a class="text-light" href="mailto:ramalho@python.pro.br">ramalho@python.pro.br</a>
+                                </p>
                             </address>
                         </div>
                     </div>
                     <div class="row text-light direitos rounded-bottom p-3">
                         <div class="col">
-                            <p>{% now 'Y' %} · Todos os direitos reservados</p>
+                            <p>
+                                {% now 'Y' %} · Todos os direitos reservados
+                            </p>
                         </div>
                     </div>
                 </div>
