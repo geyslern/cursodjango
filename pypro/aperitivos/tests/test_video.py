@@ -23,7 +23,10 @@ def test_titulo_video_motivacao(response_motivacao):
 
 
 def test_conteudo_video_motivacao(response_motivacao):
-    assert_contains(response_motivacao, '<iframe src="https://player.vimeo.com/video/713071205"')
+    assert_contains(
+        response_motivacao,
+        '<iframe src="https://player.vimeo.com/video/713071205?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"',
+    )
 
 
 def test_titulo_video_instalacao(response_instalacao):
@@ -31,4 +34,7 @@ def test_titulo_video_instalacao(response_instalacao):
 
 
 def test_conteudo_video_instalacao(response_instalacao):
-    assert_contains(response_instalacao, '<iframe src="https://player.vimeo.com/video/714670248"')
+    assert_contains(
+        response_instalacao,
+        '<iframe src="https://player.vimeo.com/video/714670248?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"',
+    )

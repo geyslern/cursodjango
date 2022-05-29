@@ -1,0 +1,24 @@
+<footer class="footer">
+    <div>
+        <div class="row text-light contato rounded-top mt-5 m pt-4 px-3">
+            <div class="col">
+                <address class="container">
+                    <h3>Entre em contato</h3>
+                    <p>
+                        <a class="text-light" href="{{ 'tel:+5512997411855' }}">+55 (12) 99741-1855</a>
+                    </p>
+                    <p>
+                        <a class="text-light" href="mailto:{{ contato_email }}">{{ contato_email }}</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+        <div class="row text-light direitos rounded-bottom p-3">
+            <div class="col">
+                <p class="container">
+                    {% now 'Y' %} · Todos os direitos reservados
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
