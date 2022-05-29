@@ -1,14 +1,24 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block description %}Página com vídeo gratuito de Python{% endblock description %}
+{% block styles %}<link href="{% static 'css/videos.css' %}" rel="stylesheet" />{% endblock styles %}
 {% block title %}Python Pro - Aperitivo{% endblock title %}
 {% block body %}
-<div class="row">
-    <div class="col">
-        <div class="container rounded mt-4 mb-3">
-            <h1 class="h1">{{ video.titulo | default:'Faltando título' }}</h1>
-            <iframe src="https://player.vimeo.com/video/{{ video.vimeo_id }}" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div class="row">
+        <div class="col">
+            <div class="container rounded mt-4 mb-3">
+                <h1 class="h1">{{ video.titulo | default:'Faltando título' }}</h1>
+                <div class="video-container">
+                    <iframe src="https://player.vimeo.com/video/{{ video.vimeo_id }}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                            frameborder="0"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            class="video-frame">
+                    </iframe>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 {% endblock body %}
+{% block scripts %}
+    <script src="https://player.vimeo.com/api/player.js"></script>
+{% endblock scripts %}
