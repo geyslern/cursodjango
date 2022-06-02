@@ -1,23 +1,13 @@
 # from django.http import HttpResponse
-from django.urls import reverse
+from pypro.aperitivos.models import Video
 from django.shortcuts import render
-
-
-class Video:
-    def __init__(self, slug, titulo, vimeo_id) -> None:
-        self.slug = slug
-        self.titulo = titulo
-        self.vimeo_id = vimeo_id
-
-    def get_absolute_url(self):
-        return reverse("aperitivos:video", args=(self.slug,))
 
 
 videos = {
     v.slug: v
     for v in [
-        Video("motivacao", "Video Aperitivo: Motivação", "713071205"),
-        Video("instalacao-windows", "Video Aperitivo: Instalação no Windows", "714670248"),
+        Video(slug="motivacao", titulo="Video Aperitivo: Motivação", vimeo_id="713071205"),
+        Video(slug="instalacao-windows", titulo="Video Aperitivo: Instalação no Windows", vimeo_id="714670248"),
     ]
 }
 
