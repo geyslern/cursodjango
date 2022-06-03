@@ -20,6 +20,7 @@ pytest-cov = "*"
 pytest = "*"
 pytest-django = "*"
 djlint = "*"
+model-mommy = "*"
 
 [requires]
 python_version = "3.10"

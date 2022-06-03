@@ -8,7 +8,7 @@
         <div class="container rounded mt-4 mb-3">
             <h1 class="h1">Vídeos Aperitivos</h1>
             <ol>
-            {% for slug, video in videos.items %}
+            {% for video in videos %}
                 <li><a href="{{ video.get_absolute_url }}">{{ video.titulo | default:'Faltando título' }}</a></li>
             {% empty %}
                 <p>Nenhum video encontrado</p>
