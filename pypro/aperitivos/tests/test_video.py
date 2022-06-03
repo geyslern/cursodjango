@@ -1,40 +1,39 @@
 import pytest
+from model_mommy import mommy
 from django.urls import reverse
-from django.test import Client
 from pypro.django_assertions import assert_contains
+from pypro.aperitivos.models import Video
 
 
 @pytest.fixture
-def response_motivacao(client: Client):
-    return client.get(reverse("aperitivos:video", args=("motivacao",)))
+def video(db):
+    return mommy.make(Video)
 
 
 @pytest.fixture
-def response_instalacao(client: Client):
-    return client.get(reverse("aperitivos:video", args=("instalacao-windows",)))
+def response_video(client, video):
+    return client.get(reverse("aperitivos:video", args=(video.slug,)))
 
 
-def test_status_code(response_motivacao):
-    assert response_motivacao.status_code == 200
+@pytest.fixture
+def response_video_nao_existe(client, video):
+    return client.get(reverse("aperitivos:video", args=(f"{video.slug}_nao_existe",)))
 
 
-def test_titulo_video_motivacao(response_motivacao):
-    assert_contains(response_motivacao, "Video Aperitivo: Motivação")
+def test_status_code(response_video):
+    assert response_video.status_code == 200
 
 
-def test_conteudo_video_motivacao(response_motivacao):
+def test_status_code_404(response_video_nao_existe):
+    assert response_video_nao_existe.status_code == 404
+
+
+def test_titulo_video_motivacao(response_video, video):
+    assert_contains(response_video, video.titulo)
+
+
+def test_conteudo_video_motivacao(response_video, video):
     assert_contains(
-        response_motivacao,
-        '<iframe src="https://player.vimeo.com/video/713071205?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"',
-    )
-
-
-def test_titulo_video_instalacao(response_instalacao):
-    assert_contains(response_instalacao, "Video Aperitivo: Instalação no Windows")
-
-
-def test_conteudo_video_instalacao(response_instalacao):
-    assert_contains(
-        response_instalacao,
-        '<iframe src="https://player.vimeo.com/video/714670248?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"',
+        response_video,
+        f'"https://player.vimeo.com/video/{ video.vimeo_id }?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"',
     )
