@@ -19,3 +19,8 @@ def response(client, modulos):
 def test_titulos_dos_modulos(response, modulos):
     for modulo in modulos:
         assert_contains(response, modulo.titulo)
+
+
+def test_link_dos_modulos(response, modulos):
+    for modulo in modulos:
+        assert_contains(response, modulo.get_absolute_url())
