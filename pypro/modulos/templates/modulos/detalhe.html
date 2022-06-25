@@ -13,6 +13,14 @@
                 <dt>Descrição</dt>
                 <dd>{{ modulo.descricao }}</dd>
             </dl>
+            <h2 class="h2">Aulas</h2>
+            <ol class="list-group list-group-flush">
+                {% for aula in aulas %}
+                <li class="list-group-item">{{ forloop.counter }}. <a href="{{ aula.get_absolute_url }}">{{ aula.titulo }}</a></li>
+                {% empty %}
+                <li class="list-group-item list-group-item-warning">Nenhuma aula cadastrada</li>
+                {% endfor %}
+            </ol>
         </div>
     </div>
 </div>
