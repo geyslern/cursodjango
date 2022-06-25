@@ -1,6 +1,6 @@
 from typing import List
 from django.urls import reverse
-from model_mommy import mommy
+from model_bakery import baker
 from pytest import fixture
 from pypro.django_assertions import assert_contains
 from pypro.modulos.models import Aula, Modulo
@@ -8,16 +8,16 @@ from pypro.modulos.models import Aula, Modulo
 
 @fixture
 def modulo(db):
-    return mommy.make(Modulo)
+    return baker.make(Modulo)
 
 
 @fixture
 def aulas(modulo):
-    return mommy.make(Aula, 3, modulo=modulo)
+    return baker.make(Aula, 3, modulo=modulo)
 
 
 @fixture
-def response(client, modulo: Modulo, aulas):
+def response(client, modulo: Modulo, aulas: List[Aula]):
     resp = client.get(reverse("modulos:detalhe", args=(modulo.slug,)))
     return resp
 
