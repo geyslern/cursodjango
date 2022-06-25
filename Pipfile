@@ -14,6 +14,7 @@ collectfast = "*"
 django-debug-toolbar = "*"
 sentry-sdk = "*"
 django-ordered-model = "*"
+model-bakery = "*"
 
 [dev-packages]
 flake8 = "*"
@@ -21,7 +22,6 @@ pytest-cov = "*"
 pytest = "*"
 pytest-django = "*"
 djlint = "*"
-model-mommy = "*"
 
 [requires]
 python_version = "3.10"

@@ -1,13 +1,13 @@
 from typing import List
 from pytest import fixture
-from model_mommy import mommy
+from model_bakery import baker
 from pypro.modulos import facade
 from pypro.modulos.models import Modulo
 
 
 @fixture
 def modulos(db):
-    return [mommy.make(Modulo, titulo=s) for s in "Depois Antes".split()]
+    return [baker.make(Modulo, titulo=s) for s in "Depois Antes".split()]
 
 
 def test_listar_modulos_ordenados(modulos: List[Modulo]):
