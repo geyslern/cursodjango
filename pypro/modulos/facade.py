@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.db.models.query import Prefetch
 from typing import List
 from pypro.modulos.models import Aula, Modulo
 
@@ -20,4 +21,11 @@ def listar_aulas_do_modulo_ordenadas(modulo: Modulo) -> List[Aula]:
 
 
 def buscar_aula(aula_slug: str) -> Aula:
-    return get_object_or_404(Aula, slug=aula_slug)
+    return Aula.objects.select_related("modulo").get(slug=aula_slug)
+
+
+def listar_modulos_com_aulas():
+    aulas_ordenadas = Aula.objects.order_by("order").all()
+    return Modulo.objects.order_by("order").prefetch_related(
+        Prefetch("aula_set", queryset=aulas_ordenadas, to_attr="aulas")
+    ).all()

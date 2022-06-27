@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block description %}Página com lista de módulos{% endblock description %}
+{% block title %}Módulos{% endblock title %}
+{% block body %}
+<div class="row">
+    <div class="col">
+        <div class="container rounded mt-4 mb-3">
+            <h1 class="h1">Módulos</h1>
+            <ol class="list-group">
+                {% for modulo in modulos %}
+                <li class="list-group-item list-group-item-action list-group-item-primary"><a href="{{ modulo.get_absolute_url }}">{{ modulo.titulo }}</a></li>
+                <dl>
+                    <dt>Público</dt>
+                    <dd>{{ modulo.publico }}</dd>
+                    <dt>Descrição</dt>
+                    <dd>{{ modulo.descricao }}</dd>
+                    <dt>Aulas</dt>
+                    <dd>
+                        <ol>
+                            {% for aula in modulo.aulas %}
+                            <li><a href="{{ aula.get_absolute_url }}">{{ aula.titulo }}</a></li>
+                            {% empty %}
+                            <li class="list-group-item list-group-item-warning">Nenhuma aula cadastrada</li>
+                            {% endfor %}
+                        </ol>
+                    </dd>
+                </dl>
+                <hr />
+                {% empty %}
+                <li class="list-group-item list-group-item-warning">Nenhum módulo cadastrado</li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+{% endblock body %}
