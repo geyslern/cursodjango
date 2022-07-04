@@ -6,10 +6,10 @@ services:
     image: postgres
     restart: always
     volumes:
-      - ./.pgdata:/var/lib/postgresql/data:rw
+      - ./.pgdata:/var/lib/postgresql/data:z
     environment:
       - LC_ALL=C.UTF-8
-      - POSTGRES_DATABASE=cursodjango
+      - POSTGRES_DB=cursodjango
       - POSTGRES_PASSWORD=pythonpro
       - POSTGRES_USER=pythonpro
     ports:
