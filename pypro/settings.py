@@ -15,7 +15,6 @@ from pathlib import Path
 from decouple import config, Csv
 import dj_database_url
 import os
-from django.urls import reverse
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
@@ -102,6 +101,7 @@ DATABASES = {"default": config("DATABASE_URL", default=sqlite_url, cast=parse_da
 AUTH_USER_MODEL = "base.User"
 
 LOGIN_REDIRECT_URL = "/modulos/"
+LOGOUT_REDIRECT_URL = "/"
 
 
 # Password validation
