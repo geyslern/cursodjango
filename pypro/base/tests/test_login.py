@@ -3,7 +3,7 @@ from django.test.client import Client
 from django.urls import reverse
 from model_bakery import baker
 from pytest import fixture
-from pypro.base.models import User
+from pypro.django_assertions import assert_contains, assert_not_contains
 
 
 @fixture
@@ -27,6 +27,18 @@ def response_post(client: Client, usuario):
     return resp
 
 
+@fixture
+def response_home(client, db):
+    resp = client.get(reverse("base:home"))
+    return resp
+
+
+@fixture
+def response_home_usuario_logado(client_usuario_logado, db):
+    resp = client_usuario_logado.get(reverse("base:home"))
+    return resp
+
+
 def test_login_form_page(response: HttpResponse):
     assert response.status_code == 200
 
@@ -34,3 +46,31 @@ def test_login_form_page(response: HttpResponse):
 def test_login_redirect(response_post: HttpResponse):
     assert response_post.status_code == 302
     assert response_post.url == reverse("modulos:indice")
+
+
+def test_botao_login_disponivel(response_home: HttpResponse):
+    assert_contains(response_home, "Entrar")
+
+
+def test_link_login_disponivel(response_home: HttpResponse):
+    assert_contains(response_home, reverse("login"))
+
+
+def test_botao_login_indisponivel(response_home_usuario_logado: HttpResponse):
+    assert_not_contains(response_home_usuario_logado, "Entrar")
+
+
+def test_link_login_indisponivel(response_home_usuario_logado: HttpResponse):
+    assert_not_contains(response_home_usuario_logado, reverse("login"))
+
+
+def test_botao_sair_disponivel(response_home_usuario_logado: HttpResponse):
+    assert_contains(response_home_usuario_logado, "Sair")
+
+
+def test_nome_usuario_logado_disponivel(response_home_usuario_logado: HttpResponse, usuario_logado):
+    assert_contains(response_home_usuario_logado, usuario_logado.first_name)
+
+
+def test_link_sair_disponivel(response_home_usuario_logado: HttpResponse):
+    assert_contains(response_home_usuario_logado, reverse("logout"))
