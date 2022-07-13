@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.urls import reverse
 from model_bakery import baker
 from pytest import fixture
@@ -16,18 +17,29 @@ def aula(modulo):
 
 
 @fixture
-def response(client, aula: Aula):
+def response_com_usuario(client_usuario_logado, aula: Aula):
+    resp = client_usuario_logado.get(reverse("modulos:aula", args=(aula.slug,)))
+    return resp
+
+
+@fixture
+def response_sem_usuario(client, aula: Aula):
     resp = client.get(reverse("modulos:aula", args=(aula.slug,)))
     return resp
 
 
-def test_titulo(response, aula: Aula):
-    assert_contains(response, aula.titulo)
+def test_titulo(response_com_usuario, aula: Aula):
+    assert_contains(response_com_usuario, aula.titulo)
 
 
-def test_vimeo(response, aula: Aula):
-    assert_contains(response, f"https://player.vimeo.com/video/{aula.vimeo_id}")
+def test_vimeo(response_com_usuario, aula: Aula):
+    assert_contains(response_com_usuario, f"https://player.vimeo.com/video/{aula.vimeo_id}")
 
 
-def test_modulo_breadcrumb(response, modulo: Modulo):
-    assert_contains(response, f'<li class="breadcrumb-item"><a href="{modulo.get_absolute_url()}">{modulo.titulo}</a></li>')
+def test_modulo_breadcrumb(response_com_usuario, modulo: Modulo):
+    assert_contains(response_com_usuario, f'<li class="breadcrumb-item"><a href="{modulo.get_absolute_url()}">{modulo.titulo}</a></li>')
+
+
+def test_usuario_nao_logado_redirect(response_sem_usuario: HttpResponse):
+    assert response_sem_usuario.status_code == 302
+    assert response_sem_usuario.url.startswith(reverse("login"))
