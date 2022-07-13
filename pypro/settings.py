@@ -100,6 +100,7 @@ DATABASES = {"default": config("DATABASE_URL", default=sqlite_url, cast=parse_da
 
 AUTH_USER_MODEL = "base.User"
 
+LOGIN_URL = "/contas/login/"
 LOGIN_REDIRECT_URL = "/modulos/"
 LOGOUT_REDIRECT_URL = "/"
 
