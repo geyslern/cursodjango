@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.test.client import Client
 from django.urls import reverse
+from django.utils.translation import gettext as _
 from model_bakery import baker
 from pytest import fixture
 from pypro.django_assertions import assert_contains, assert_not_contains
@@ -49,7 +50,7 @@ def test_login_redirect(response_post: HttpResponse):
 
 
 def test_botao_login_disponivel(response_home: HttpResponse):
-    assert_contains(response_home, "Entrar")
+    assert_contains(response_home, _("Log in"))
 
 
 def test_link_login_disponivel(response_home: HttpResponse):
@@ -65,7 +66,7 @@ def test_link_login_indisponivel(response_home_usuario_logado: HttpResponse):
 
 
 def test_botao_sair_disponivel(response_home_usuario_logado: HttpResponse):
-    assert_contains(response_home_usuario_logado, "Sair")
+    assert_contains(response_home_usuario_logado, _("Log out"))
 
 
 def test_nome_usuario_logado_disponivel(response_home_usuario_logado: HttpResponse, usuario_logado):
