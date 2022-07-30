@@ -37,7 +37,10 @@ def test_vimeo(response_com_usuario, aula: Aula):
 
 
 def test_modulo_breadcrumb(response_com_usuario, modulo: Modulo):
-    assert_contains(response_com_usuario, f'<li class="breadcrumb-item"><a href="{modulo.get_absolute_url()}">{modulo.titulo}</a></li>')
+    assert_contains(
+        response_com_usuario,
+        f'<li class="breadcrumb-item"><a href="{modulo.get_absolute_url()}">{modulo.titulo}</a></li>'
+    )
 
 
 def test_usuario_nao_logado_redirect(response_sem_usuario: HttpResponse):
